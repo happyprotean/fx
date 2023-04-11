@@ -2,6 +2,27 @@
 ## 为什么要用zx？
 可以在js中调用shell命令
 
+shebang, 也成hashbang，是有#!组成的字符序列，文件中存在shebang 的情况下，系统会分析shebang后的内容，并调用指定的解释器来解释执行文件的内容
+```shell
+#!/usr/bin/env bash 调用系统环境变量中的bash，方便移植，推荐写法
+#!/bin/bash 也可以指定固定的路径，但不方便移植，不推荐
+```
+
+直接tsc会把ts文件编译成js文件
+
+pnpm link --global 使当前本地包可在系统范围内或其他位置访问
+
+将当前库link到全局，会自动的安装package.json的bin字段的命令，这样就可以全局调用。
+
+global 全局对象
+
+`Object.assign(global, { __filename, __dirname, require });`
+
+Node
+- basename, dirname, extname, join, resolve
+- url
+- createRequire
+
 
 ## 第一个核心功能点：$`command`
 
