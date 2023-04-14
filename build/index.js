@@ -12,6 +12,7 @@ console.log('here---');
 console.log(process.argv.slice(2));
 import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
+import { $ } from './core.js';
 import url from 'node:url';
 (() => __awaiter(void 0, void 0, void 0, function* () {
     const helloFilePath = './hello.mjs';
@@ -20,6 +21,4 @@ import url from 'node:url';
     Object.assign(global, { require });
     yield import(url.pathToFileURL(origin).toString());
 }))();
-export function $(command) {
-    console.log('command', command);
-}
+Object.assign(global, { $ });

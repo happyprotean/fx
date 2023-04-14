@@ -1,9 +1,10 @@
 #!/usr/bin/env zx
 
-const res = await $`cat package.json | grep name`
+$`cat package.json`
 
 // let branch = await $`git branch --show-current`
-// await $`dep deploy --branch=${branch}`
+// // await $`dep deploy --branch=${branch}`
+// console.log('branch', branch)
 
 // await Promise.all([
 //   $`sleep 1; echo 1`,

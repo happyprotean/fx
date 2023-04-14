@@ -10,8 +10,17 @@ shebang, 也成hashbang，是有#!组成的字符序列，文件中存在shebang
 #!/bin/bash 也可以指定固定的路径，但不方便移植，不推荐
 ```
 ---- 
+tsc 会配合tsconfig.json把ts文件编译成js文件
 
-直接tsc会把ts文件编译成js文件
+`tsc && vitest`
+
+在.ts文件中，不要通过import直接引入.ts文件，这是因为
+- ts编译器不会编译import语句，编译前是.ts，编译后还是.ts，这会导致编译后的js文件中引入.ts文件，出现错误
+- 方法1：直接省略文件扩展名
+- 方法2：直接引入同名的js文件 `import { $ } from '../bin/core.js'`
+- 方法3：使用打包器时，可以配置需要解析的文件扩展名
+
+---
 
 pnpm link --global 使当前本地包可在系统范围内或其他位置访问
 
@@ -32,7 +41,9 @@ reateRequire 是 Node.js 12 引入的一个函数，用于创建一个类似于 
 
 在 Node.js 中，require 函数用于加载模块。但是在 ECMAScript 模块中，由于其具有静态结构，不能像 CommonJS 模块那样使用 require 动态加载模块。因此，Node.js 引入了 createRequire 函数，以便在 ECMAScript 模块中动态加载模块。
 ```js
-import { createRequire } from 'node:module'; const require = createRequire(import.meta.url); const lodash = require('lodash');
+import { createRequire } from 'node:module'; 
+const require = createRequire(import.meta.url);
+const lodash = require('lodash');
 ```
 在上面的示例中，我们首先使用 createRequire 函数创建一个 require 实例，并将其分配给变量 require。然后，我们可以使用这个 require 实例加载 lodash 模块，就像在 CommonJS 模块中一样
 
