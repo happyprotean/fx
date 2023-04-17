@@ -1,11 +1,13 @@
 import { $ } from '../bin/core.js'
-import { vi, describe, it, expect } from 'vitest'
+import { it, expect, describe, vi } from 'vitest'
 
 describe('core', () => {
-  it('should run command', async () => {
-    vi.stubEnv('PACKAGE_NAME', 'fx')
-    const r = await $`echo $PACKAGE_NAME`
-    console.log('res', r)
-    expect(r).toContain('fx')
+  it('should exec shell command', async () => {
+    vi.stubEnv('PACKAGE_NAME', 'cx')
+    process.env.PACKAGE_NAME = 'cx'
+
+    const result = await $`echo $PACKAGE_NAME`
+
+    expect(result).toContain('cx')
   })
 })
